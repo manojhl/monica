@@ -63,12 +63,12 @@ class DashboardController extends Controller
 
                 return [
                     'id' => $event->id,
-                    'date' => DateHelper::createDateFromFormat($event->created_at, $account->user->timezone),
+                    'date' => DateHelper::createDateFromFormat($event->created_at, auth()->user()->timezone),
                     'object' => $object ?? null,
                     'object_type' => $event->object_type,
                     'object_id' => $event->object_id,
                     'contact_id' => $event->contact->id,
-                    'contact_complete_name' => $event->contact->name,
+                    'contact_complete_name' => $event->contact->getCompleteName(auth()->user()->name_order),
                     'nature_of_operation' => $event->nature_of_operation,
                 ];
             });
@@ -99,7 +99,7 @@ class DashboardController extends Controller
             'debt_owed' => $debt_owed,
             'tasks' => $tasks,
             'debts' => $debt,
-            'user' => $account->user
+            'user' => auth()->user()
         ];
 
         return view('dashboard.index', $data);

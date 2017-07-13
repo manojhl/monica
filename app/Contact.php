@@ -5,11 +5,11 @@ namespace App;
 use Auth;
 use Carbon\Carbon;
 use App\Helpers\DateHelper;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
@@ -17,6 +17,13 @@ class Contact extends Model
     protected $dates = [
         'birthdate',
     ];
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['id'];
 
     /**
      * Eager load account with every contact.
@@ -156,6 +163,16 @@ class Contact extends Model
     }
 
     /**
+     * Get the tags records associated with the contact.
+     *
+     * @return HasMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag')->withPivot('account_id')->withTimestamps();
+    }
+
+    /**
      * Sort the contacts according a given criteria
      * @param Builder $builder
      * @param string $criteria
@@ -179,27 +196,7 @@ class Contact extends Model
     }
 
     /**
-     * Get user's full name
-     *
-     * @return string
-     */
-    public function getNameAttribute()
-    {
-        $completeName = $this->first_name;
-
-        if (!is_null($this->middle_name)) {
-            $completeName = $completeName . ' ' . $this->middle_name;
-        }
-
-        if (!is_null($this->last_name)) {
-            $completeName = $completeName . ' ' . $this->last_name;
-        }
-
-        return $completeName;
-    }
-
-    /**
-     * Get user's full name
+     * Get user's initials
      *
      * @return string
      */
@@ -215,9 +212,33 @@ class Contact extends Model
      *
      * @return string
      */
-    public function getCompleteName()
+    public function getCompleteName($nameOrder = 'firstname_first')
     {
-        return $this->name;
+        $completeName = '';
+
+        if ($nameOrder == 'firstname_first') {
+            $completeName = $this->first_name;
+
+            if (!is_null($this->middle_name)) {
+                $completeName = $completeName . ' ' . $this->middle_name;
+            }
+
+            if (!is_null($this->last_name)) {
+                $completeName = $completeName . ' ' . $this->last_name;
+            }
+        } else {
+            if (!is_null($this->last_name)) {
+                $completeName = $this->last_name;
+            }
+
+            if (!is_null($this->middle_name)) {
+                $completeName = $completeName . ' ' . $this->middle_name;
+            }
+
+            $completeName = $completeName . ' ' . $this->first_name;
+        }
+
+        return $completeName;
     }
 
     /**
@@ -274,8 +295,7 @@ class Contact extends Model
         $lastActivity = $this->activities->sortByDesc('date_it_happened')->first();
 
         return DateHelper::getShortDate(
-            Carbon::parse($lastActivity->date_it_happened, $timezone),
-            'en'
+            Carbon::parse($lastActivity->date_it_happened, $timezone)
         );
     }
 
@@ -404,6 +424,7 @@ class Contact extends Model
 
     /**
      * Get the street of the contact.
+     *
      * @return string or null
      */
     public function getStreet()
@@ -417,6 +438,7 @@ class Contact extends Model
 
     /**
      * Get the province of the contact.
+     *
      * @return string or null
      */
     public function getProvince()
@@ -430,6 +452,7 @@ class Contact extends Model
 
     /**
      * Get the postal code of the contact.
+     *
      * @return string or null
      */
     public function getPostalCode()
@@ -443,6 +466,7 @@ class Contact extends Model
 
     /**
      * Get the country of the contact.
+     *
      * @return string or null
      */
     public function getCountryName()
@@ -456,6 +480,7 @@ class Contact extends Model
 
     /**
      * Get the city.
+     *
      * @return string
      */
     public function getCity()
@@ -469,6 +494,7 @@ class Contact extends Model
 
     /**
      * Get the countryID of the contact.
+     *
      * @return string or null
      */
     public function getCountryID()
@@ -478,6 +504,7 @@ class Contact extends Model
 
     /**
      * Get the country ISO of the contact.
+     *
      * @return string or null
      */
     public function getCountryISO()
@@ -500,16 +527,6 @@ class Contact extends Model
         $address = urlencode($address);
 
         return "https://www.google.ca/maps/place/{$address}";
-    }
-
-    /**
-     * Get the last updated date.
-     *
-     * @return string Y-m-d
-     */
-    public function getLastUpdated()
-    {
-        return DateHelper::createDateFromFormat($this->updated_at, $this->account->user->timezone)->format('Y/m/d');
     }
 
     /**
@@ -763,58 +780,6 @@ class Contact extends Model
     }
 
     /**
-     * Create a note.
-     *
-     * @param string $body
-     * @return mixed
-     */
-    public function addNote($body)
-    {
-        $note = $this->notes()->create([]);
-        $note->account_id = $this->account_id;
-        $note->body = $body;
-        $note->save();
-
-        $this->number_of_notes = $this->number_of_notes + 1;
-        $this->save();
-
-        $this->logEvent('note', $note->id, 'create');
-
-        return $note->id;
-    }
-
-    /**
-     * Delete the note.
-     *
-     * @param Note|int $note
-     */
-    public function deleteNote($note)
-    {
-        if (!$note instanceof Note) {
-            $note = Note::findOrFail($note);
-        }
-
-        $note->delete();
-
-        // Decrease number of notes
-        $this->number_of_notes = $this->number_of_notes - 1;
-
-        if ($this->number_of_notes < 1) {
-            $this->number_of_notes = 0;
-        }
-
-        $this->save();
-
-        // Delete all events
-        $this->events()
-            ->where('object_type', 'note')
-            ->where('object_id', $note->id)
-            ->get()
-            ->each
-            ->delete();
-    }
-
-    /**
      * Get all the activities, if any.
      *
      * @return Collection
@@ -917,6 +882,7 @@ class Contact extends Model
 
     /**
      * Returns the URL of the avatar with the given size
+     *
      * @param  int $size
      * @return string
      */
@@ -930,6 +896,12 @@ class Contact extends Model
         return Storage::disk('public')->url($resized_avatar);
     }
 
+    /**
+     * Get the gravatar, if it exits.
+     *
+     * @param  integer $size
+     * @return string|boolean
+     */
     public function getGravatar($size)
     {
         if (empty($this->email)) {
@@ -947,6 +919,7 @@ class Contact extends Model
 
     /**
      * Check if the contact has debt (by the contact or the user for this contact)
+     *
      * @return boolean
      */
     public function hasDebt()
@@ -962,4 +935,17 @@ class Contact extends Model
         return $this->debts;
     }
 
+    /**
+     * Get the list of tags as a string to populate the tags form
+     */
+    public function getTagsAsString()
+    {
+        $tags = array();
+
+        foreach ($this->tags as $tag) {
+            array_push($tags, $tag->name);
+        }
+
+        return implode(',', $tags);
+    }
 }

@@ -8,11 +8,15 @@ return [
     'people_list_number_reminders' => '{0} 0 rappel |{1,1} 1 rappel |{2,*} :count rappels',
     'people_list_blank_title' => 'Vous n\'avez encore ajouté aucun contact.',
     'people_list_blank_cta' => 'Ajouter quelqu\'un',
-    'people_list_search' => 'Rechercher quelqu\'un par son nom',
+    'people_list_stats' => ':count contacts',
+    'people_list_sort' => 'Tri',
     'people_list_firstnameAZ' => 'Tri par prénom A → Z',
     'people_list_firstnameZA' => 'Tri par prénom Z → A',
     'people_list_lastnameAZ' => 'Tri par nom de famille A → Z',
     'people_list_lastnameZA' => 'Tri par nom de famille Z → A',
+    'people_list_filter_tag' => 'Showing all the contacts tagged with <span class="pretty-tag">:name</span>',
+    'people_list_clear_filter' => 'Clear filter',
+    'people_list_contacts_per_tags' => '{0} 0 contact|{1,1} 1 contact|{2,*} :count contacts',
 
     // people add
     'people_add_title' => 'Ajouter une nouvelle personne',
@@ -26,6 +30,7 @@ return [
     'people_delete_click_here' => 'cliquez ici',
     'people_delete_confirmation' => 'Etes-vous sûr de vouloir supprimer ce contact ? La suppression est permanente.',
     'people_add_birthday_reminder' => 'Wish happy birthday to :name',
+    'people_add_import' => 'Do you want to <a href="/settings/import">import your contacts</a>?',
 
     // show
     'section_personal_information' => 'Informations personnelles',
@@ -124,10 +129,6 @@ return [
     'reminders_next_expected_date' => 'le',
     'reminders_cta' => 'Ajouter un rappel',
     'reminders_description' => 'Nous vous enverrons un courriel pour chacun des rappels ci-dessous. Les rappels sont envoyés le matin du jour où l\'évènement se passe.',
-    'reminders_frequency' => 'chaque',
-    'reminders_date' => 'Date',
-    'reminders_content' => 'Contenu',
-    'reminders_actions' => 'Actes',
     'reminders_one_time' => 'Unique',
 
     // significant other
@@ -194,7 +195,7 @@ return [
     'activity_type_group_sport' => 'Sport',
     'activity_type_group_food' => 'Nourriture',
     'activity_type_group_cultural_activities' => 'Activités culturelles',
-    'activity_type_just_hanged_out' => 'traîner ensemble',
+    'activity_type_just_hung_out' => 'traîner ensemble',
     'activity_type_watched_movie_at_home' => 'regarder un film à la maison ensemble',
     'activity_type_talked_at_home' => 'parler ensemble à la maison',
     'activity_type_did_sport_activities_together' => 'fait du sport ensemble',
@@ -226,8 +227,8 @@ return [
     'activities_delete_success' => 'L\'activité a été supprimée avec succès.',
 
     // notes
-    'notes_add_success' => 'La note a été ajoutée avec succès.',
-    'notes_edit_success' => 'La note a été modifiée avec succès.',
+    'notes_create_success' => 'La note a été ajoutée avec succès.',
+    'notes_update_success' => 'La note a été modifiée avec succès.',
     'notes_delete_success' => 'La note a été supprimée avec succès.',
     'notes_add_title' => 'Ajouter une note à propos de :name.',
     'notes_add_cta' => 'Ajouter la note',
@@ -272,8 +273,8 @@ return [
     'debt_add_success' => 'La dette a été ajoutée avec succès',
     'debt_title' => 'Dettes',
     'debt_add_cta' => 'Ajouter une dette',
-    'debt_you_owe' => 'Vous devez $:amount',
-    'debt_they_owe' => ':name vous doit $:amount',
+    'debt_you_owe' => 'Vous devez :amount',
+    'debt_they_owe' => ':name vous doit :amount',
     'debt_add_title' => 'Gestion des dettes',
     'debt_add_you_owe' => 'Vous devez :name',
     'debt_add_they_owe' => ':name vous doit',
@@ -282,6 +283,9 @@ return [
     'debt_add_add_cta' => 'Ajouter la dette',
     'debt_edit_update_cta' => 'Mettre à jour la dette',
     'debt_edit_success' => 'La dette a été modifiée avec succès',
-    'debts_blank_title' => 'Gérez les dettes que vous devez à :name ou que :name vous doit'
+    'debts_blank_title' => 'Gérez les dettes que vous devez à :name ou que :name vous doit',
+
+    // tags
+    'tag_edit' => 'Edit tag',
 
 ];

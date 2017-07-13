@@ -8,11 +8,15 @@ return [
     'people_list_number_reminders' => '{0} 0 reminders|{1,1} 1 reminder|{2, *} :count reminders',
     'people_list_blank_title' => 'You don\'t have anyone in your account yet',
     'people_list_blank_cta' => 'Add someone',
-    'people_list_search' => 'Search contact by name',
+    'people_list_sort' => 'Sort',
+    'people_list_stats' => ':count contacts',
     'people_list_firstnameAZ' => 'Sort by first name A → Z',
     'people_list_firstnameZA' => 'Sort by first name Z → A',
     'people_list_lastnameAZ' => 'Sort by last name A → Z',
     'people_list_lastnameZA' => 'Sort by last name Z → A',
+    'people_list_filter_tag' => 'Showing all the contacts tagged with <span class="pretty-tag">:name</span>',
+    'people_list_clear_filter' => 'Clear filter',
+    'people_list_contacts_per_tags' => '{0} 0 contact|{1,1} 1 contact|{2,*} :count contacts',
 
     // people add
     'people_add_title' => 'Add a new person',
@@ -26,6 +30,7 @@ return [
     'people_delete_click_here' => 'click here',
     'people_delete_confirmation' => 'Are you sure you want to delete this contact? Deletion is permanent.',
     'people_add_birthday_reminder' => 'Wish happy birthday to :name',
+    'people_add_import' => 'Do you want to <a href="/settings/import">import your contacts</a>?',
 
     // show
     'section_personal_information' => 'Personal information',
@@ -120,11 +125,7 @@ return [
     'reminders_delete_cta' => 'Delete',
     'reminders_next_expected_date' => 'on',
     'reminders_cta' => 'Add a reminder',
-    'reminders_description' => 'We will send an email for each one of the reminders below. Reminders are sent every morning the day events will happen',
-    'reminders_frequency' => 'every',
-    'reminders_date' => 'Date',
-    'reminders_content' => 'Content',
-    'reminders_actions' => 'Actions',
+    'reminders_description' => 'We will send an email for each one of the reminders below. Reminders are sent every morning the day events will happen. Reminders automatically added for birthdates can not be deleted. If you want to change those dates, edit the birthdate of the contacts.',
     'reminders_one_time' => 'One time',
     'reminders_type_week' => 'week',
     'reminders_type_month' => 'month',
@@ -194,7 +195,7 @@ return [
     'activity_type_group_sport' => 'Sport',
     'activity_type_group_food' => 'Food',
     'activity_type_group_cultural_activities' => 'Cultural activities',
-    'activity_type_just_hanged_out' => 'just hanged out',
+    'activity_type_just_hung_out' => 'just hung out',
     'activity_type_watched_movie_at_home' => 'watched a movie at home',
     'activity_type_talked_at_home' => 'just talked at home',
     'activity_type_did_sport_activities_together' => 'did sport together',
@@ -226,8 +227,8 @@ return [
     'activities_delete_success' => 'The activity has been deleted successfully',
 
     // notes
-    'notes_add_success' => 'The note has been added successfully',
-    'notes_edit_success' => 'The note has been saved successfully',
+    'notes_create_success' => 'The note has been created successfully',
+    'notes_update_success' => 'The note has been saved successfully',
     'notes_delete_success' => 'The note has been deleted successfully',
     'notes_add_title' => 'Add a note about :name',
     'notes_add_cta' => 'Add note',
@@ -272,8 +273,8 @@ return [
     'debt_add_success' => 'The debt has been added successfully',
     'debt_title' => 'Debts',
     'debt_add_cta' => 'Add debt',
-    'debt_you_owe' => 'You owe $:amount',
-    'debt_they_owe' => ':name owes you $:amount',
+    'debt_you_owe' => 'You owe :amount',
+    'debt_they_owe' => ':name owes you :amount',
     'debt_add_title' => 'Debt management',
     'debt_add_you_owe' => 'You owe :name',
     'debt_add_they_owe' => ':name owes you',
@@ -282,5 +283,8 @@ return [
     'debt_add_add_cta' => 'Add debt',
     'debt_edit_update_cta' => 'Update debt',
     'debt_edit_success' => 'The debt has been updated successfully',
-    'debts_blank_title' => 'Manage debts you owe to :name or :name owes you'
+    'debts_blank_title' => 'Manage debts you owe to :name or :name owes you',
+
+    // tags
+    'tag_edit' => 'Edit tag',
 ];

@@ -7,6 +7,7 @@ return [
     'cancel' => 'Отмена',
     'delete' => 'Удалить',
     'edit' => 'Редактировать',
+    'upload' => 'Upload',
 
     'header_settings_link' => 'Настройки',
     'header_logout_link' => 'Выйти',
@@ -25,12 +26,20 @@ return [
     'footer_release' => 'Примечания к выпуску',
     'footer_newsletter' => 'Рассылка',
     'footer_source_code' => 'Monica on GitHub',
+    'footer_version' => 'Version: :version',
 
     'breadcrumb_dashboard' => 'Обзор',
     'breadcrumb_list_contacts' => 'Список контактов',
     'breadcrumb_journal' => 'Журнал',
     'breadcrumb_settings' => 'Settings',
     'breadcrumb_settings_export' => 'Export',
+    'breadcrumb_settings_users' => 'Users',
+    'breadcrumb_settings_users_add' => 'Add a user',
+    'breadcrumb_settings_subscriptions' => 'Subscription',
+    'breadcrumb_settings_import' => 'Import',
+    'breadcrumb_settings_import_report' => 'Import report',
+    'breadcrumb_settings_import_upload' => 'Upload',
+    'breadcrumb_settings_tags' => 'Tags',
 
     'gender_male' => 'Мужской',
     'gender_female' => 'Женский',

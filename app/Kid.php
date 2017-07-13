@@ -60,7 +60,7 @@ class Kid extends Model
 
     /**
      * Assigns a birthday or birth year to the loved one based on
-     * the data  provided.
+     * the data provided.
      *
      * @param string $approximation ['unknown', 'exact', 'approximate']
      * @param \DateTime|string $exactDate
@@ -90,9 +90,7 @@ class Kid extends Model
      */
     public function getBirthdateAttribute($value)
     {
-        if ($this->account) {
-            return Carbon::parse($value, $this->account->user->timezone);
-        } elseif (auth()->user()) {
+        if (auth()->user()) {
             return Carbon::parse($value, auth()->user()->timezone);
         }
 

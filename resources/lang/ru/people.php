@@ -8,11 +8,15 @@ return [
     'people_list_number_reminders' => ':count напоминание|:count напоминания|:count напоминаний',
     'people_list_blank_title' => 'Вы пока ни кого ещё не добавили',
     'people_list_blank_cta' => 'Добавить кого нибудь',
-    'people_list_search' => 'Искать контакты по имени',
+    'people_list_stats' => ':count contacts',
+    'people_list_sort' => 'Sort',
     'people_list_firstnameAZ' => 'Сортировать по имени А → Я',
     'people_list_firstnameZA' => 'Сортировать по имени Я → А',
     'people_list_lastnameAZ' => 'Сортировать по фамилии А → Я',
     'people_list_lastnameZA' => 'Сортировать по фамилии Я → А',
+    'people_list_filter_tag' => 'Showing all the contacts tagged with <span class="pretty-tag">:name</span>',
+    'people_list_clear_filter' => 'Clear filter',
+    'people_list_contacts_per_tags' => '{0} 0 contact|{1,1} 1 contact|{2,*} :count contacts',
 
     // people add
     'people_add_title' => 'Добавить человека',
@@ -26,6 +30,7 @@ return [
     'people_delete_click_here' => 'нажмите сюда',
     'people_delete_confirmation' => 'Вы уверены что хотите удалить этот контакт? Восстановление невозможно.',
     'people_add_birthday_reminder' => 'Wish happy birthday to :name',
+    'people_add_import' => 'Do you want to <a href="/settings/import">import your contacts</a>?',
 
     // show
     'section_personal_information' => 'Личные данные',
@@ -121,10 +126,6 @@ return [
     'reminders_next_expected_date' => 'в',
     'reminders_cta' => 'Добавить напоминание',
     'reminders_description' => 'По каждому из напоминаний выше мы отправим вам письмо. Они высылаются по утрам',
-    'reminders_frequency' => 'Периодичность',
-    'reminders_date' => 'Дата',
-    'reminders_content' => 'Название',
-    'reminders_actions' => 'Действия',
     'reminders_one_time' => 'один раз',
     'reminders_type_week' => 'неделя',
     'reminders_type_month' => 'месяц',
@@ -194,7 +195,7 @@ return [
     'activity_type_group_sport' => 'Спорт',
     'activity_type_group_food' => 'Еда',
     'activity_type_group_cultural_activities' => 'Культурные',
-    'activity_type_just_hanged_out' => 'просто повеселились',
+    'activity_type_just_hung_out' => 'просто повеселились',
     'activity_type_watched_movie_at_home' => 'смотрели кино дома',
     'activity_type_talked_at_home' => 'разговаривали дома',
     'activity_type_did_sport_activities_together' => 'занимались спортом вместе',
@@ -226,8 +227,8 @@ return [
     'activities_delete_success' => 'Активность была удалена',
 
     // notes
-    'notes_add_success' => 'Заметка была добавлена',
-    'notes_edit_success' => 'The note has been saved successfully',
+    'notes_create_success' => 'Заметка была добавлена',
+    'notes_update_success' => 'The note has been saved successfully',
     'notes_delete_success' => 'Заметка была удалена',
     'notes_add_title' => 'Добавить заметку о :name',
     'notes_add_cta' => 'Добавить заметку',
@@ -272,8 +273,8 @@ return [
     'debt_add_success' => 'Долг был добавлен',
     'debt_title' => 'Долги',
     'debt_add_cta' => 'Добавить долг',
-    'debt_you_owe' => 'Вы должны $:amount',
-    'debt_they_owe' => ':name должен вам $:amount',
+    'debt_you_owe' => 'Вы должны :amount',
+    'debt_they_owe' => ':name должен вам :amount',
     'debt_add_title' => 'Управление долгами',
     'debt_add_you_owe' => 'Вы должны :name',
     'debt_add_they_owe' => ':name должен вам',
@@ -282,5 +283,8 @@ return [
     'debt_add_add_cta' => 'Добавить долг',
     'debt_edit_update_cta' => 'Update debt',
     'debt_edit_success' => 'The debt has been updated successfully',
-    'debts_blank_title' => 'Manage debts you owe to :name or :name owes you'
+    'debts_blank_title' => 'Manage debts you owe to :name or :name owes you',
+
+    // tags
+    'tag_edit' => 'Edit tag',
 ];
